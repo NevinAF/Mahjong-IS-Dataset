@@ -14,25 +14,25 @@ import pickle
 import random
 
 import cv2
-import google.colab.patches as cv2_imshow
+from google.colab.patches import cv2_imshow
 
 #
 # Define constants
 #
 
-CONFIG_FILE = "COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml"
-CHECKPOINT_URL = "COCO-Detection/faster_rcnn_R_50_FPN_3x.yaml"
+CONFIG_FILE = "COCO-InstanceSegmentation/mask_rcnn_R_101_FPN_3x.yaml"
+CHECKPOINT_URL = "COCO-InstanceSegmentation/mask_rcnn_R_101_FPN_3x.yaml"
 
 OUTPUT_DIR = "output"
 NUM_CLASSES = 1
 
 TRAIN_DATASET_NAME = "train"
 TRAIN_DATASET_PATH = "train"
-TRAIN_DATASET_ANNOTATION_PATH = "train.json"
+TRAIN_DATASET_ANNOTATION_PATH = "/root/Mahjong-IS-Dataset/train_poly.json"
 
 TEST_DATASET_NAME = "test"
 TEST_DATASET_PATH = "test"
-TEST_DATASET_ANNOTATION_PATH = "test.json"
+TEST_DATASET_ANNOTATION_PATH = "/root/Mahjong-IS-Dataset/test_poly.json"
 
 DEVICE_NAME = "cuda"
 
@@ -62,7 +62,7 @@ def get_train_cfg():
 
 	cfg.SOLVER.IMS_PER_BATCH = 2
 	cfg.SOLVER.BASE_LR = 0.00025
-	cfg.SOLVER.MAX_ITER = 3000
+	cfg.SOLVER.MAX_ITER = 100
 	cfg.SOLVER.STEPS = []
 
 	cfg.MODEL.ROI_HEADS.NUM_CLASSES = NUM_CLASSES
